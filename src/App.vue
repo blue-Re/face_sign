@@ -1,30 +1,32 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <Tabbar />
+  <!-- <keep-alive >
+  
+  <router-view v-slot="{Component}"/>
+  </keep-alive> -->
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
 </template>
 
+<script>
+import Tabbar from "./components/Tabbar.vue";
+export default {
+  components: {
+    Tabbar,
+  },
+};
+</script>
 <style lang="less">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  --van-padding-xs: 5px;
+  --van-nav-bar-background-color: #4c79ef;
+  --van-nav-bar-title-text-color: white;
+  // width: 100vw;
+  overflow: scroll;
+  height: 100vh;
+  background-color: rgb(242, 242, 244);
 }
 </style>
